@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      :root {
+        --form-size: 70%;
+        --padding: 5px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .Panel {
+        padding: 0.2rem 0;
+        margin: 4rem auto;
+        background-color: gray;
+        width: 40rem;
+        height: 22rem;
+      }
+      .input {
+        margin: 1rem auto;
+        padding: 0.5rem;
+        width: var(--form-size);
+        border: 3px solid blue;
+      }
+      label {
+        margin: auto 1rem;
+        font-size: large;
+        font-weight: 900;
+      }
+      input[type="text"] {
+        width: 60%;
+        height: 2rem;
+        margin: 1rem auto;
+        padding-left: 5px;
+        border-radius: 5px;
+        border: none;
+        border-bottom: 2px solid red;
+        cursor: pointer;
+        font-size: large;
+        letter-spacing: 1px;
+      }
+      .operator {
+        width: var(--form-size);
+        border: 3px solid red;
+        margin: 1rem auto;
+        padding: var(--padding);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      input[type="button"] {
+        width: 100px;
+        padding: 2%;
+        cursor: pointer;
+        font-weight: 900;
+        font-size: large;
+        color: purple;
+        border-radius: 5px;
+        border: 3px solid purple;
+        color: black;
+      }
+      input[type="button"]:active {
+        background-color: rgb(5, 158, 5);
+        border: white;
+        color: white;
+      }
+      .Result {
+        width: var(--form-size);
+        border: 3px solid rgb(123, 255, 0);
+        margin: auto;
+        padding: 0 var(--padding);
+        display: flex;
+      }
+      .Result > input[type="button"]:active {
+        background-color: red;
+      }
+      @media (max-width: 768px) {
+        .operator {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 5px;
+        }
+
+        input[type="button"] {
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .Panel {
+          width: 90%;
+        }
+
+        label {
+          font-size: 0.9rem;
+        }
+
+        input[type="text"] {
+          height: 2rem;
+        }
+
+        input[type="button"] {
+          font-size: 0.8rem;
+        }
+
+        .operator {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="Panel">
+      <div class="input">
+        <label> Enter Value1 : </label>
+        <input type="text" placeholder="value1" id="val1" /><br />
+        <label> Enter Value2 : </label>
+        <input type="text" placeholder="value2" id="val2" /><br />
+      </div>
+      <div class="operator">
+        <input type="button" value="+" id="Sum" />
+        <input type="button" value="-" id="Sub" />
+        <input type="button" value="*" id="Mult" />
+        <input type="button" value="/" id="Div" />
+      </div>
+      <div class="Result">
+        <input type="text" placeholder="result" id="result" disabled />
+        <input type="button" value="Clear" id="Clear" />
+      </div>
+    </div>
+    <script>
+      const btnSum = document.getElementById("Sum");
+      const btnSub = document.getElementById("Sub");
+      const btnMult = document.getElementById("Mult");
+      const btnDiv = document.getElementById("Div");
+      const btnClear = document.getElementById("Clear");
+      const ResultField = document.getElementById("result");
+      //eventbtn
+      btnSum.addEventListener("click", () => {
+        const Value1 = Number(document.getElementById("val1").value);
+        const Value2 = Number(document.getElementById("val2").value);
+        ResultField.value = Value1 + Value2;
+      });
+      btnSub.addEventListener("click", () => {
+        const Value1 = Number(document.getElementById("val1").value);
+        const Value2 = Number(document.getElementById("val2").value);
+        ResultField.value = Value1 - Value2;
+      });
+      btnMult.addEventListener("click", () => {
+        const Value1 = Number(document.getElementById("val1").value);
+        const Value2 = Number(document.getElementById("val2").value);
+        ResultField.value = Value1 * Value2;
+      });
+      btnDiv.addEventListener("click", () => {
+        const Value1 = Number(document.getElementById("val1").value);
+        const Value2 = Number(document.getElementById("val2").value);
+        ResultField.value = Value1 / Value2;
+      });
+      btnClear.addEventListener("click", () => {
+        document.getElementById("val1").value = "";
+        document.getElementById("val2").value = "";
+        ResultField.value = "";
+      });
+    </script>
+  </body>
+</html>
